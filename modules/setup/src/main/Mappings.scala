@@ -27,4 +27,5 @@ object Mappings {
   val level = number.verifying(AiConfig.levels contains _)
   val speed = number.verifying(Config.speeds contains _)
   val fen = optional(nonEmptyText)
+  val openingBook = text.verifying(AiConfig.openings contains _)
 }

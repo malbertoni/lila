@@ -50,6 +50,7 @@ object forms {
     layout(form, "ai", trans.playWithTheMachine(), routes.Setup.ai) {
       frag(
         renderVariant(form, translatedAiVariantChoices),
+        renderOpening(form),
         fenInput(form("fen"), true, validFen),
         renderTimeMode(form, lila.setup.AiConfig),
         if (ctx.blind) frag(

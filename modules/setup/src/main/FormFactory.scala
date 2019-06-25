@@ -44,6 +44,7 @@ private[setup] final class FormFactory(
       "days" -> days,
       "level" -> level,
       "color" -> color,
+      "openingBook" -> openingBook,
       "fen" -> fen
     )(AiConfig.<<)(_.>>)
       .verifying("invalidFen", _.validFen)

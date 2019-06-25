@@ -53,6 +53,7 @@ final class Player(
             initialFen = initialFen,
             studyId = none,
             variant = game.variant,
+            openingBook = game.openingBook,
             moves = moves mkString " "
           ),
           currentFen = FEN(Forsyth >> game.chess),
@@ -74,4 +75,5 @@ final class Player(
       }
       else fufail(s"[fishnet] Too many moves (${game.turns}), won't play ${game.id}")
     else fufail(s"[fishnet] invalid position on ${game.id}")
+
 }

@@ -48,6 +48,7 @@ object Work {
       initialFen: Option[FEN],
       studyId: Option[String],
       variant: Variant,
+      openingBook: Option[String] = None,
       moves: String
   ) {
 

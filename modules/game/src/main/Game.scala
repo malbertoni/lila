@@ -26,7 +26,8 @@ case class Game(
     bookmarks: Int = 0,
     createdAt: DateTime = DateTime.now,
     movedAt: DateTime = DateTime.now,
-    metadata: Metadata
+    metadata: Metadata,
+    openingBook: Option[String]
 ) {
   lazy val clockHistory = chess.clock flatMap loadClockHistory
 
@@ -641,6 +642,7 @@ object Game {
     mode: Mode,
     source: Source,
     pgnImport: Option[PgnImport],
+    openingBook: Option[String] = None,
     daysPerTurn: Option[Int] = None
   ): NewGame = {
     val createdAt = DateTime.now
@@ -660,7 +662,8 @@ object Game {
         analysed = false
       ),
       createdAt = createdAt,
-      movedAt = createdAt
+      movedAt = createdAt,
+      openingBook = openingBook
     ))
   }
 
@@ -704,6 +707,7 @@ object Game {
     val winnerId = "wid"
     val initialFen = "if"
     val checkAt = "ck"
+    val openingBook = "ob"
   }
 }
 

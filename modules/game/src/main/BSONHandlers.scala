@@ -72,7 +72,6 @@ object BSONHandlers {
     def reads(r: BSON.Reader): Game = {
 
       lila.mon.game.fetch()
-
       val light = lightGameBSONHandler.readsWithPlayerIds(r, r str F.playerIds)
       val startedAtTurn = r intD F.startedAtTurn
       val plies = r int F.turns atMost Game.maxPlies // unlimited can cause StackOverflowError
@@ -81,7 +80,6 @@ object BSONHandlers {
 
       val playedPlies = plies - startedAtTurn
       val gameVariant = Variant(r intD F.variant) | chess.variant.Standard
-
       val decoded = r.bytesO(F.huffmanPgn).map { PgnStorage.Huffman.decode(_, playedPlies) } | {
         val clm = r.get[CastleLastMove](F.castleLastMove)
         PgnStorage.Decoded(
@@ -139,6 +137,7 @@ object BSONHandlers {
         bookmarks = r intD F.bookmarks,
         createdAt = createdAt,
         movedAt = r.dateD(F.movedAt, createdAt),
+        openingBook = r strO F.openingBook,
         metadata = Metadata(
           source = r intO F.source flatMap Source.apply,
           pgnImport = r.getO[PgnImport](F.pgnImport)(PgnImport.pgnImportBSONHandler),
@@ -173,7 +172,8 @@ object BSONHandlers {
       F.pgnImport -> o.metadata.pgnImport,
       F.tournamentId -> o.metadata.tournamentId,
       F.simulId -> o.metadata.simulId,
-      F.analysed -> w.boolO(o.metadata.analysed)
+      F.analysed -> w.boolO(o.metadata.analysed),
+      F.openingBook -> o.openingBook
     ) ++ {
         if (o.variant.standard)
           $doc(F.huffmanPgn -> PgnStorage.Huffman.encode(o.pgnMoves take Game.maxPlies))

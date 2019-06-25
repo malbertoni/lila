@@ -43,6 +43,11 @@ private object bits {
         case (id, _, _) => ctx.noBlind || lila.game.Game.blindModeVariants.exists(_.id.toString == id)
       })
     )
+  def renderOpening(form: Form[_])(implicit ctx: Context) =
+    div(cls := "openingBook label_select")(
+      renderLabel(form("openingBook"), trans.opening()),
+      renderSelect(form("openingBook"), OpeningChoices)
+    )
 
   def renderSelect(
     field: Field,

@@ -67,6 +67,12 @@ trait SetupHelper { self: I18nHelper =>
   def translatedVariantChoices(implicit ctx: Context) = List(
     (chess.variant.Standard.id.toString, trans.standard.txt(), chess.variant.Standard.title.some)
   )
+  def OpeningChoices(implicit ctx: Context) = List(
+    ("Z00", "GM Any", "GM Any".some),
+    ("Z01", "LC0 Wide", "LC0 Wide".some),
+    ("Z02", "LC0 Narrow", "LC0 Narrow".some),
+    ("A00", "Nimzovich-Larsen Attack", "Nimzovich-Larsen Attack".some)
+  )
 
   def translatedVariantChoicesWithVariants(implicit ctx: Context) =
     translatedVariantChoices(ctx) :+
@@ -95,6 +101,9 @@ trait SetupHelper { self: I18nHelper =>
       variantTuple(chess.variant.Horde) :+
       variantTuple(chess.variant.RacingKings) :+
       variantTuple(chess.variant.FromPosition)
+
+  def aiOpeningChoices(implicit ctx: Context) =
+    OpeningChoices(ctx)
 
   def translatedVariantChoicesWithVariantsAndFen(implicit ctx: Context) =
     translatedVariantChoicesWithVariants :+

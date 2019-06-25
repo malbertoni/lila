@@ -147,6 +147,7 @@ object JsonApi {
       game_id: String,
       position: FEN,
       variant: Variant,
+      opening: Option[String],
       moves: String
   )
 
@@ -154,7 +155,8 @@ object JsonApi {
     game_id = if (g.studyId.isDefined) "" else g.id,
     position = g.initialFen | FEN(g.variant.initialFen),
     variant = g.variant,
-    moves = g.moves
+    moves = g.moves,
+    opening = g.openingBook
   )
 
   sealed trait Work {
