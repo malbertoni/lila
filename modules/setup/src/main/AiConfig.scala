@@ -73,11 +73,11 @@ object AiConfig extends BaseConfig {
     days = 2,
     level = 1,
     color = Color.default,
-    openingBook = "Z00"
+    openingBook = "GM2500"
   )
 
   val levels = (1 to 8).toList
-  val openings = List("Z00", "Z01", "Z02", "A00")
+  val openings = List("GM2500", "GM2650", "Club", "D30", "E01", "E20", "E60", "None")
   val levelChoices = levels map { l => (l.toString, l.toString, none) }
 
   import lila.db.BSON

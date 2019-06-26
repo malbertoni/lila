@@ -68,10 +68,14 @@ trait SetupHelper { self: I18nHelper =>
     (chess.variant.Standard.id.toString, trans.standard.txt(), chess.variant.Standard.title.some)
   )
   def OpeningChoices(implicit ctx: Context) = List(
-    ("Z00", "GM Any", "GM Any".some),
-    ("Z01", "LC0 Wide", "LC0 Wide".some),
-    ("Z02", "LC0 Narrow", "LC0 Narrow".some),
-    ("A00", "Nimzovich-Larsen Attack", "Nimzovich-Larsen Attack".some)
+    ("GM2500", "GM 2500+", "GM2500+".some),
+    ("GM2650", "GM 2650+", "GM 2650+".some),
+    ("Club", "Club (1400-1900)", "Club (1400-1900)".some),
+    ("D30", "Queen's Gambit Denied", "Queen's Gambit Denied".some),
+    ("E01", "Catalan", "Catalan".some),
+    ("E20", "Nimzo-Indian Defense", "Nimzo-Indian Defense".some),
+    ("E60", "King's Indian Defense", "King's Indian Defense".some),
+    ("None", "No Opening Book", "No Opening Book".some)
   )
 
   def translatedVariantChoicesWithVariants(implicit ctx: Context) =
